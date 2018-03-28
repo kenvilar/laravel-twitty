@@ -13,7 +13,7 @@ class TwitterController extends Controller
 	    	'count' => '10',
 	    ]);
 
-	    return view('twitter')->with('tweets', $tweets);
+	    return view('twitter')->with(['tweets' => $tweets]);
     }
 
     public function tweet() {
