@@ -11,7 +11,7 @@ class TwitterController extends Controller
     public function userTimeline() {
 	    $tweets = Twitter::getUserTimeline([
 	    	'count' => '10',
-		    'format' => 'json'
+		    'format' => 'array'
 	    ]);
 
 	    return view('twitter')->with('tweets', $tweets);
