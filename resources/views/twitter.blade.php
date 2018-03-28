@@ -36,12 +36,17 @@
 
         <div class="container">
             @if(!empty($tweets))
-                @foreach($tweets as $tweet)
+                @foreach($tweets as $key => $tweet)
                     <div class="card border-primary mb-3">
                         <div class="card-body">
                             <h4 class="card-title">{{ $tweet->text }}
                                 <i class="icon ion-heart"></i> {{ $tweet->favorite_count }}
                                 <i class="icon ion-refresh"></i> {{ $tweet->retweet_count }}</h4>
+                            @if(!empty($tweet->extended_entities->media))
+                                @foreach($tweet->extended_entities->media as $key => $val)
+                                    <a href="{{ $val->media_url_https }}"><img src="{{ $val->media_url_https }}" alt="{{ $val->type }}" style="width: 100px;"></a>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 @endforeach
