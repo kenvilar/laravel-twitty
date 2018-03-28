@@ -4,3 +4,6 @@
 
 ### Instructions
 Go to https://apps.twitter.com/ and create your own application
+
+Copy all keys and access tokens and their secrets to your .env file for security. Do not touch the `config/ttwitter.php` file.
+
