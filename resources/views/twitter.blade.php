@@ -35,6 +35,31 @@
     <div id="main-wrapper">
 
         <div class="container">
+
+            <div class="card text-white bg-info mb-3">
+                @include('inc.alert')
+
+                <div class="card-header">Compose new Tweet</div>
+                <div class="card-body">
+                    <form action="{{ route('post.tweet') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="tweet">Text</label>
+                                <input type="email" name="tweet" id="tweet" class="form-control" placeholder="Enter text">
+                            </div>
+                            <div class="form-group">
+                                <label for="upload-image">Upload Image</label>
+                                <input type="file" name="upload-image[]" id="upload-image" multiple class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-primary">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
             @if(!empty($tweets))
                 @foreach($tweets as $key => $tweet)
                     <div class="card border-primary mb-3">
@@ -53,6 +78,7 @@
             @else
                 <p class="text-center">No tweets found.</p>
             @endif
+
         </div>
 
     </div>
