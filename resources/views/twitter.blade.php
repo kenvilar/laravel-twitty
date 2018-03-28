@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="//bootswatch.com/4/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <!-- Styles -->
     <style>
@@ -23,13 +24,32 @@
             margin: 0; }
         .full-height { height: 100vh; }
         .position-ref { position: relative; }
+        #main-wrapper { margin-top: 20px; }
     </style>
 </head>
 <body>
 <div class="position-ref full-height">
 
+    @include('layouts.navbar')
+
     <div id="main-wrapper">
-        @include('layouts.navbar')
+
+        <div class="container">
+            @if(!empty($tweets))
+                @foreach($tweets as $tweet)
+                    <div class="card border-primary mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ $tweet->text }}
+                                <i class="icon ion-heart"></i> {{ $tweet->favorite_count }}
+                                <i class="icon ion-refresh"></i> {{ $tweet->retweet_count }}</h4>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="text-center">No tweets found.</p>
+            @endif
+        </div>
+
     </div>
 
     @include('layouts.scripts')
