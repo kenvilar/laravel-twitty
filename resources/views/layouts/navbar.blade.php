@@ -9,9 +9,6 @@
             <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item {{ Request::is('/tweet') ? 'active' : '' }}">
-                <a class="nav-link" href="/tweet">Tweet</a>
-            </li>
         </ul>
     </div>
 </nav>
