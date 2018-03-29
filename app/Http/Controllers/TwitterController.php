@@ -30,7 +30,7 @@ class TwitterController extends Controller
         if (!empty($request->file('upload-image'))) {
             foreach ($request->file('upload-image') as $key => $val) {
                 $uploaded_media = Twitter::uploadMedia([
-                    ['media' => File::get($val->getRealPath())]
+                    'media' => File::get($val->getRealPath())
                 ]);
 
                 if (! $uploaded_media) {
