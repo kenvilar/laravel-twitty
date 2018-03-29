@@ -8,15 +8,39 @@ use File;
 
 class TwitterController extends Controller
 {
-    public function userTimeline() {
-	    $tweets = Twitter::getUserTimeline([
-	    	'count' => '10',
-	    ]);
+    public function userTimeline()
+    {
+        $tweets = Twitter::getUserTimeline([
+            'count' => '10',
+        ]);
 
-	    return view('twitter')->with(['tweets' => $tweets]);
+        return view('twitter')->with(['tweets' => $tweets]);
     }
 
-    public function tweet() {
+    public function tweet(Request $request)
+    {
+        $this->validate($request, [
+            'tweet' => 'required'
+        ]);
 
+        $tweet = [
+            'status' => $request->input('tweet'),
+        ];
+
+        if (!empty($request->file('upload-image'))) {
+            foreach ($request->file('upload-image') as $key => $val) {
+                $uploaded_media = Twitter::uploadMedia([
+                    ['media' => File::get(realpath($val->getPath()))]
+                ]);
+
+                if (! $uploaded_media) {
+                    $tweet['media_ids'][$uploaded_media->media_id_string] = $uploaded_media;
+                }
+            }
+        }
+
+        Twitter::postTweet($tweet);
+
+        return redirect('/');
     }
 }
