@@ -46,7 +46,7 @@
                         <fieldset>
                             <div class="form-group">
                                 <label for="tweet">Text</label>
-                                <input type="email" name="tweet" id="tweet" class="form-control" placeholder="Enter text">
+                                <input type="text" name="tweet" id="tweet" class="form-control" placeholder="Enter text">
                             </div>
                             <div class="form-group">
                                 <label for="upload-image">Upload Image</label>
