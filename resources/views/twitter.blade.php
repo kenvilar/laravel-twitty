@@ -65,8 +65,11 @@
                     <div class="card border-primary mb-3">
                         <div class="card-body">
                             <h4 class="card-title">{{ $tweet->text }}
-                                <i class="icon ion-heart"></i> <small>{{ $tweet->favorite_count }}</small>
-                                <i class="icon ion-refresh"></i> <small>{{ $tweet->retweet_count }}</small></h4>
+                                <span class="float-right">
+                                    <i class="icon ion-heart"></i> <small>{{ $tweet->favorite_count }}</small>
+                                    <i class="icon ion-refresh"></i> <small>{{ $tweet->retweet_count }}</small>
+                                </span>
+                            </h4>
                             @if(!empty($tweet->extended_entities->media))
                                 @foreach($tweet->extended_entities->media as $key => $val)
                                     <a href="{{ $val->media_url_https }}"><img src="{{ $val->media_url_https }}" alt="{{ $val->type }}" style="width: 100px;"></a>
