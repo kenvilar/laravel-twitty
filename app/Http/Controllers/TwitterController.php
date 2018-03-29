@@ -33,7 +33,7 @@ class TwitterController extends Controller
                     'media' => File::get($val->getRealPath())
                 ]);
 
-                if (! $uploaded_media) {
+                if (isset($uploaded_media)) {
                     $tweet['media_ids'][$uploaded_media->media_id_string] = $uploaded_media->media_id_string;
                 }
             }
